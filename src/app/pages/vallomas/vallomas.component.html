@@ -1,0 +1,39 @@
+<h2 class="content-block">Home</h2>
+<div class="content-block">
+  <div class="dx-card responsive-paddings">
+  <div class="logos-container">
+    <img src="/assets/Crayon.png"/>
+  </div>
+
+
+
+  <dx-button stylingMode="contained"
+  text="Reset"
+   [height]="50"
+   [width]="150"
+   type="normal"
+   (onClick)="processDoc()"
+  >
+</dx-button>
+<dx-progress-bar
+[value]="progress"
+[height]="50"
+(onValueChanged)="handleValueChange($event)">
+</dx-progress-bar>
+
+
+
+   <p>Töltse fel a vallomását PDF ben</p>
+  <input type="file" #file title="Vallomás pdf" 
+                      placeholder="Vallomás" accept="pdf/*" 
+                      multiple 
+                      (change)="uploadFileToAIServer($event)"
+                      >
+                  
+</div>
+
+<iframe [src]="pdfUrl" 
+        width="100%" 
+        height="600px"
+        title ="PDF document"></iframe>
+</div> 

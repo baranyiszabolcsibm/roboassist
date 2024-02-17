@@ -52,8 +52,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/assets/templates"
+              "src/assets"
             ],
             "styles": [
               "node_modules/devextreme/dist/css/dx.common.css",
@@ -90,12 +89,17 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "roboassist:build:production"
+              "buildTarget": "roboassist:build:production",
+              "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
-              "buildTarget": "roboassist:build:development"
+              "buildTarget": "roboassist:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

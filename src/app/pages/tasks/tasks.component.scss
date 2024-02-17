@@ -1,0 +1,25 @@
+
+
+
+.view-wrapper {
+  padding-top: var(--content-padding);
+  padding-bottom: 0;
+
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+  
+    gap: 0px;
+
+    .left {
+      flex: 3 ;
+      margin-top: 0px;
+    }
+
+    .right {
+      flex: 1 ;
+      margin-top: 10px;
+    //   min-width: 340px;
+    }
+  }
+}
