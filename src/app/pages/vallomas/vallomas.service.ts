@@ -30,7 +30,7 @@ export class Service {
     const formData: FormData = new FormData();
     formData.append('file', file, filename);
 
-    return this.http.put<any>(this.apiUrl+"/uploadPdf/"+filename, formData);
+    return this.http.post<any>(this.apiUrl+"/uploadPdf", formData);
   }
 
 

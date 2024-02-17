@@ -13,7 +13,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class VallomasComponent {
   pdfUrl: SafeResourceUrl;
-  pdfUploadUrl: SafeResourceUrl;
+  pdfUploadUrl='http://localhost:5000/bmapi/uploadPdf';// SafeResourceUrl;
   pdfextractMetaUrl: SafeResourceUrl;
   // adam backendje backendUrl='http://91.107.238.245:8080/'
   progress:number=0;
@@ -22,10 +22,11 @@ export class VallomasComponent {
   // Domsanitizer kell hogy egyújabb secu fasságot NG0904: unsafe value used in a resource URL context áthidaljak 
   constructor(private service: Service,  private http: HttpClient,private sanitizer: DomSanitizer) {
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');   //local drivreól valami
-    this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
+
+    //this.pdfUploadUrl= this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/uploadPdf');  //getPDF
     this.pdfextractMetaUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
-    this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
-    this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
+    //this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
+    //this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
 
   }
 
@@ -58,7 +59,7 @@ export class VallomasComponent {
   }
 */
 
-
+//single file  nem multipart basz
 onFileSelected(event: any) {
   const file: File = event.target.files[0];
   const filename: string = file.name;
@@ -141,21 +142,20 @@ public callReset() {
   }
 
   public uploadFileToAIServer(files:any) {
-    if (files.length === 0) {
-      return;
-    }
-    for (var i = 0; i < files.length; i++) {
-      let ufile = "prefix"+ i.toString();
-      let fileToUpload = <File>files[i];
+
+    var selectedFile = files.target.files[0] as File;
+
+    //for (var i = 0; i < files.length; i++) {
+
+      let fileToUpload =  selectedFile;  // <File>files[i];
       const formData = new FormData();
-      formData.append('file', fileToUpload, fileToUpload.name);
-      const headers = new HttpHeaders({
-        'accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      });
+      formData.append('file', fileToUpload, 'bszprefix_'+fileToUpload.name);
+      // const headers = new HttpHeaders({
+      //   'accept': 'application/json',
+      //   'Content-Type': 'multipart/form-data'
+      // });
       //formData.append('userid', JSON.stringify(this.commonUserData.currentId));
-      var serverUrl=  "http://127.0.0.1:5000/bmapi";
-      this.http.post(serverUrl+'uploadPdf/', formData, { headers })
+      this.http.post(this.pdfUploadUrl, formData)     // ,{ headers }
       .subscribe({
         next: res => {
           var z= res;
@@ -169,7 +169,7 @@ public callReset() {
           console.log('Request complete');
         }
       });
-    }
+   // }
 
   }
 
