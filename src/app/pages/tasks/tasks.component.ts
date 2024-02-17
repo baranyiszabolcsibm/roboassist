@@ -21,7 +21,7 @@ export class TasksComponent {
   currentTab: string[] | undefined;
   priority: any[];
   serverUrl:string="http://91.107.238.245:8080/";
-  progress:number=0;
+  
 
   constructor(private http: HttpClient,service: Service) {
     this.dataSource = {
@@ -81,7 +81,6 @@ export class TasksComponent {
       next: res => {
         var z= res;
         this.valueContent =res;
-        this.progress=this.progress+20;
       },
       error: error => {
         var ez= error;
@@ -124,22 +123,6 @@ export class TasksComponent {
     ;
   }
 
-  btn1()
-  {
-    this.progress=30;
-    
-  }
 
-  handleValueChange(e:any)
-  {
-    var v=123;
-    switch(this.progress){
-      case 30:
-        this.templatechange('feljelentes');
-        break;
-      case 50:
-        this.templatechange('nyomozas');
-        break;
-    }
-  }
+
 }

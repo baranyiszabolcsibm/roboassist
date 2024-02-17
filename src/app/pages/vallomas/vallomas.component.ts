@@ -30,6 +30,21 @@ export class VallomasComponent {
   }
 
 
+  handleValueChange(e:any)
+  {
+    var v=123;
+    switch(this.progress){
+      case 30:
+        var z= 30;
+        //this.templatechange('feljelentes');
+        break;
+      case 50:
+        var z=30;
+        //this.templatechange('nyomozas');
+        break;
+    }
+  }
+
                 /*
   sendFile(file:any) {
     const formData = new FormData();
