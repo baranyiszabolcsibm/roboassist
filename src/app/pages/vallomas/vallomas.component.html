@@ -1,36 +1,49 @@
 <h2 class="content-block">Vallomás felvétele</h2>
-<div class="content-block">
-  <div class="dx-card responsive-paddings">
+<div class="view-wrapper">
+  <div class="panels"></div>
 
-
-
-  <dx-button stylingMode="contained"
-  text="Reset"
-   [height]="50"
-   [width]="150"
-   type="normal" 
-   (onClick)="processDoc()"
-  >
-</dx-button>
+    Töltse fel a vallomását PDF ben : 
+      <input type="file" #file title="Vallomás pdf" 
+                        placeholder="Vallomás" accept="pdf/*" 
+                         
+                        (change)="uploadFileToAIServer($event)">
+      <dx-button stylingMode="contained"
+      text="Feldolgoz"
+        [height]="50"
+        [width]="150"
+        type="success" 
+        (onClick)="processDoc()"   >
+    </dx-button>  
+    AI rendszer váltás (MISTRAL: onPrem vagy GPT4 cloud):  
+    <dx-button stylingMode="contained"
+      [text]=execsystem
+      [height]="50"
+      [width]="100"
+      type="normal" 
+      (onClick)="changeExecSystem()"   >
+  </dx-button>       
+</div>    
+  
 <dx-progress-bar
 [value]="progress"
 [height]="50"
 (onValueChanged)="handleValueChange($event)">
 </dx-progress-bar>
-
-
-
-   <p>Töltse fel a vallomását PDF ben</p>
-  <input type="file" #file title="Vallomás pdf" 
-                      placeholder="Vallomás" accept="pdf/*" 
-                      multiple 
-                      (change)="uploadFileToAIServer($event)"
-                      >
-                  
+<div class="panels">
+  <div class="left">
+        <div class="content-block dx-card ">
+          <iframe [src]="pdfUrl" 
+                  width="100%"                  
+                  height="600px"
+                  title ="PDF document"></iframe>
+        </div> 
+  </div>
+  <div class="right">
+    <div class="content-block dx-card ">
+      <div class="value-content" >{{apimessage }}</div> 
+    </div>
+  </div>
 </div>
 
-<iframe [src]="pdfUrl" 
-        width="100%" 
-        height="600px"
-        title ="PDF document"></iframe>
-</div> 
+
+

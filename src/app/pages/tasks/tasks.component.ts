@@ -75,12 +75,14 @@ export class TasksComponent {
 
   public async templatechange(templatename:string) {
     // const buttonText = e.component.option('text');
-    this.getDocMetadata();
+
+    
     this.http.get('./assets/templates/'+templatename+'.txt', { responseType: 'text' })
     .subscribe({
       next: res => {
         var z= res;
         this.valueContent =res;
+        this.getDocMetadata('get'+templatename);
       },
       error: error => {
         var ez= error;
@@ -89,36 +91,51 @@ export class TasksComponent {
       complete: () => {     // anonym
         console.log('Request complete');
       }});
-
+      
      
     return;
 
    
   }
 
-  public getDocMetadata(){
+  public getDocMetadata(endpoint:string){
     let headers = new Headers();
+    let baseurl = 'http://127.0.0.1:5000/bmapi/';
     headers.append('Content-Type', 'application/json');
-    //let params = new URLSearchParams();
-    //    params.append("filename", 'c:\\tmp\\1.pdf')
-
-    let queryparams = new HttpParams().set("filename", 'c:\\tmp\\1.pdf'); //Create new HttpParams  .set("paramName2", paramValue2)
-
-    this.http.get('http://127.0.0.1:5000/bmapi/getMetadataProxy', { params:queryparams })
-    .subscribe({
-      next: res => {
-        var z= res;
-        this.extractedDataJson =  res ;
-        this.valueContent = this.valueContent.replace("{{csereldki}}","kukutyin");
-      },
-      error: error => {
-        var ez= error;
-      },
-      complete: () => {     // anonym
-        console.log('Request complete');
-      }
-    });
-    
+    //let queryparams = new HttpParams().set("filename", 'c:\\tmp\\1.pdf'); //Create new HttpParams  .set("paramName2", paramValue2)
+    if (endpoint == "getBtkCategory" || endpoint == "getSummary")
+      {
+          this.http.get(baseurl+endpoint,{ responseType: 'text' })   //, { params:queryparams }
+          .subscribe({
+            next: res => {
+              console.log(res);
+              this.extractedDataJson =  res ;
+              this.valueContent = this.valueContent.replace("{{csereldki}}","kukutyin");
+            }, 
+            error: error => {
+              var ez= error;
+            },
+            complete: () => {     // anonym
+              console.log('Request complete');
+            }
+          });
+        }
+        else{
+          this.http.get(baseurl+endpoint)   //, { params:queryparams }
+          .subscribe({
+            next: res => {
+              console.log('Request complete');
+              this.extractedDataJson =  res ;
+              this.valueContent = this.valueContent.replace("{{csereldki}}","kukutyin");
+            },
+            error: error => {
+              var ez= error;
+            },
+            complete: () => {     // anonym
+              console.log('Request complete');
+            }
+          });
+        }
     
     ;
   }

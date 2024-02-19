@@ -32,3 +32,30 @@
     }
   }
 }
+
+
+
+
+.view-wrapper {
+ 
+  padding-bottom: 0;
+
+  .panels {
+    display: flex;
+    flex-wrap: wrap;
+  
+    gap: 0px;
+
+    .left {
+      flex: 3 ;
+      margin-top: 0px;
+      min-width: 800px;
+    }
+
+    .right {
+      flex: 1 ;
+      margin-top: 10px;
+    //  min-width: 340px;
+    }
+  }
+}
