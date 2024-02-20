@@ -1,10 +1,7 @@
 
 
-  
-
 
 .view-wrapper {
-  // background-image: url("../../../assets/DALL·E\ 2024-02-18_robocop.png");
   padding-top: var(--content-padding);
   padding-bottom: 0;
 
@@ -15,13 +12,13 @@
     gap: 0px;
 
     .left {
-      flex: 3 ;
+      flex: 1 ;
       margin-top: 0px;
     }
 
     .right {
-      flex: 2 ;
-      margin-top: 0px;
+      flex: 1 ;
+      margin-top: 10px;
     //   min-width: 340px;
     }
   }

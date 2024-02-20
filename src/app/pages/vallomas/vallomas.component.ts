@@ -12,8 +12,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   providers: [Service]
 })
 export class VallomasComponent {
-  actualFileToProcess="XC.pdf";
-  apimessage=" ";
+  isMultiline = true;
+  valueContent: string ="0";
+  currentTab: string[] | undefined
+
+  actualFileToProcess="empty.pdf";
+  apimessage=" X ";
   pdfUrl: SafeResourceUrl;
   execsystem = "MISTRAL";
 
@@ -26,7 +30,7 @@ export class VallomasComponent {
 
   // Domsanitizer kell hogy egyújabb secu fasságot NG0904: unsafe value used in a resource URL context áthidaljak 
   constructor(private service: Service,  private http: HttpClient,private sanitizer: DomSanitizer) {
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf/1.pdf');   //a feltöltött file visszaadva
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf/empty.pdf');   //a feltöltött file visszaadva
 
     //this.pdfUploadUrl= this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/uploadPdf');  //getPDF
     this.pdfextractMetaUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
@@ -34,7 +38,28 @@ export class VallomasComponent {
     //this.pdfUploadUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/bmapi/getPdf');
 
   }
+  ngOnInit(): void {
+    //template reload
+    this.http.get('./assets/templates/FeljelentesMetadata.txt', { responseType: 'text' })
+    .subscribe({
+      next: res => {
+        var z= res;
+        this.valueContent =res;
+      },
+      error: error => {
+        var ez= error;
+        console.log('Error :',error);
+      },
+      complete: () => {     // anonym
+        console.log('Request complete');
+      }});
+  }
 
+  public generatePdf()
+  {
+    const elementToConvert = document.getElementById('html2pdf');
+    this.service.genetratePdf(this.valueContent);
+  }
   public processDoc(){
     this.extractPdfMeta();
 

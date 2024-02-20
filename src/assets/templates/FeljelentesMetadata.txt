@@ -38,7 +38,7 @@
     2012. évi C. törvény 370. § (1) bekezdésébe ütköző és a (2) bekezdés b)
     pontjának bc) alpontja szerint minősülő szabálysértési értékre dolog elleni
     erőszakkal elkövetett lopás vétségének megalapozott gyanúja miatt ismeretlen
-    tettes ellen folyamatban lévő eljárásban Feljelentő Imre Péter tanú
+    tettes ellen folyamatban lévő eljárásban {{Feljelentő}} tanú
     kihallgatása alkalmával 4400 Széplak, Stadion út 1-5 alatti hivatali
     helyiségben 2013. július 04. napon 15 óra 44 perckor.</span
   >
@@ -60,9 +60,8 @@
 <p style="text-align: justify;"><br /></p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Dió Tamásné r.
-    őrgy                                                     Feljelentő Imre
-    Péter</span
+    >{{A nyomozó hatóság részéről}} r.
+    őrgy                                                     {{Feljelentő}}</span
   >
 </p>
 <p style="text-align: justify;">
@@ -80,13 +79,12 @@
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
     >név                                                                    :
-    Feljelentő Imre Péter</span
+    {{Feljelentő}}</span
   >
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >születési hely, idő                                             : Széplak,
-    1953.02.01</span
+    >születési hely, idő                                             : {{születési hely, idő}}</span
   >
 </p>
 <p style="text-align: justify;">
@@ -108,38 +106,34 @@
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >lakcíme                                                              : 4400
-    Széplak, Havas utca 12. sz.
+    >lakcíme                                                              : {{lakcíme}}
   </span>
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >értesítési címe                                                   : 4400
-    Széplak, Havas utca 12. sz.
+    >értesítési címe                                                   : {{értesítési címe}}
   </span>
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >tényleges tartózkodási hely címe                      : 4400 Széplak, Havas
-    utca 12. sz.
+    >tényleges tartózkodási hely címe                      :{{tényleges tartózkodási hely címe}}
   </span>
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >kézbesítési címe                                                : 4400
-    Széplak, Havas utca 12. sz.
+    >kézbesítési címe                                                : {{kézbesítési címe}}
   </span>
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
     >telefonos elérhetősége                                       :
-    36-20-2616821</span
+    {{telefonos elérhetősége}}</span
   >
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
     >e-mail címe                                                       :
-    nincs</span
+    {{e-mail címe}}</span
   >
 </p>
 <p style="text-align: justify;">
@@ -155,7 +149,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -178,7 +172,7 @@
 <p style="text-align: justify;"><br /></p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -219,7 +213,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter
+    >{{Feljelentő}}
   </span>
 </p>
 <p style="text-align: center;">
@@ -262,7 +256,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -384,7 +378,7 @@
 <p style="text-align: justify;"><br /></p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -447,7 +441,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -561,7 +555,7 @@
 <p style="text-align: justify;"><br /></p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter tanú (sértett) nyilatkozata a költségtérítési
+    >{{Feljelentő}} tanú (sértett) nyilatkozata a költségtérítési
     igényről:</span
   >
 </p>
@@ -572,7 +566,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -597,7 +591,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter</span
+    >{{Feljelentő}}</span
   >
 </p>
 <p style="text-align: center;">
@@ -612,7 +606,7 @@
 </p>
 <p style="text-align: center;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Feljelentő Imre Péter
+    >{{Feljelentő}}
   </span>
 </p>
 <p style="text-align: center;">
@@ -660,13 +654,12 @@
 <p style="text-align: justify;"><br /></p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >Dió Tamásné r. őrgy</span
+    >{{A nyomozó hatóság részéről}} r. őrgy</span
   >
 </p>
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
-    >kiemelt főnyomozó                                        Feljelentő Imre
-    Péter</span
+    >kiemelt főnyomozó                                        {{Feljelentő}}</span
   >
 </p>
 <p>

@@ -6,16 +6,6 @@
   }
 }
 
-.devextreme-logo {
-  width: 200px;
-  height: 34px;
-  margin-bottom: 13px;
-}
-
-.angular-logo {
-  width: 220px;
-  height: 62px;
-}
 
 .plus {
   margin: 15px 10px;
@@ -37,19 +27,18 @@
 
 
 .view-wrapper {
- 
-  padding-bottom: 0;
+ width: 78%;
 
   .panels {
-    display: flex;
-    flex-wrap: wrap;
+position: absolute;
+left: 10%;
   
     gap: 0px;
 
     .left {
-      flex: 3 ;
+      flex: 1 ;
       margin-top: 0px;
-      min-width: 800px;
+
     }
 
     .right {

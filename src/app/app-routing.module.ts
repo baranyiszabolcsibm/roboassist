@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
+import { NgModule,Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
@@ -6,9 +7,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { DxButtonModule, DxDataGridModule, DxFormModule } from 'devextreme-angular';
-import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule ,DxProgressBarModule} from 'devextreme-angular';
+import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule ,DxProgressBarModule,DxTextAreaModule } from 'devextreme-angular';
 import { VallomasComponent } from './pages/vallomas/vallomas.component';
 import { DocprocessComponent } from './pages/docprocess/docprocess.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,10 @@ const routes: Routes = [
   {
     path: 'vallomas',
     component: VallomasComponent
+  },
+  {
+    path: 'chat',
+    component: ChatComponent
   },
   {
     path: 'docprocess',
@@ -63,10 +69,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })
-        , DxDataGridModule, DxFormModule
+    ,CommonModule, DxDataGridModule, DxFormModule
         ,DxButtonModule, DxHtmlEditorModule,
         DxCheckBoxModule,
-        DxSelectBoxModule,DxProgressBarModule],
+        DxSelectBoxModule,DxProgressBarModule,DxTextAreaModule
+        ],
 
   providers: [AuthGuardService],
   exports: [RouterModule],
@@ -75,7 +82,8 @@ const routes: Routes = [
     ProfileComponent,
     TasksComponent,
     VallomasComponent,
-    DocprocessComponent
+    DocprocessComponent,
+    ChatComponent
   ]
 })
 export class AppRoutingModule { }

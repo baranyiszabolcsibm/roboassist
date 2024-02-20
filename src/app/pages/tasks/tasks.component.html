@@ -34,10 +34,9 @@
       
             <div class="panels">
                   <div class="left">
-                        <div class="content-block dx-card ">
-               
-            
-                              <dx-html-editor height="600px" [value]="valueContent">
+                        <p>Feljelentésből az MI által automatikusan előkészített dokumentum:</p>
+                        <div class=" dx-card ">                              
+                              <dx-html-editor height="500px" [value]="valueContent">
                                     <dxo-toolbar [multiline]="isMultiline">
                                     <dxi-item name="undo"></dxi-item>
                                     <dxi-item name="redo"></dxi-item>
@@ -107,19 +106,33 @@
                         </div>
                   </div>
           <div class="right">
-            <div class="dx-card details-card"> 
-                  <dx-data-grid
-                  [allowColumnResizing]="true"
-                  [showBorders]="true"
-                  [dataSource]="extractedDataJson">
-            </dx-data-grid> 
-                  <!-- <div class="value-content" >{{
-                        valueContent
-                      }}</div> -->
+            <p>Feljelentésből az MI által kigyűjtött adatok:</p>
+
+            <div class="dx-card "> 
+                  <ng-container *ngIf="gridview; else nemMegjel">
+                        <dx-data-grid
+                        [allowColumnResizing]="true"
+                        [showBorders]="true"
+                        [dataSource]="extractedDataJson"
+                        height="450">
+                  </dx-data-grid> 
+                      </ng-container>
+              
+                      <!-- <ng-template #notLoading>Create a new account</ng-template>      details-card
+                  <div *ngIf="gridview; else nemMegjel">
+
+                      </div> -->
+                      <ng-template #nemMegjel>
+                        <pre style="overflow-y: scroll;  max-height: 450px; border: 0.5px solid lightgray;  white-space: pre-wrap;">
+                              {{extractedDataJson}}
+                            </pre>
+                      </ng-template>
+                  
+  
             </div> 
           </div>
-            </div>
       </div>
+</div>
 
 
 

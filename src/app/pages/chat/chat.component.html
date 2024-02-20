@@ -1,0 +1,59 @@
+
+       <div class="view-wrapper">
+
+      
+            <div class="panels">
+                  <div class="left">
+                        <div class="content-block dx-card ">
+                              <dx-text-area
+                              [(value)]="questionText"
+                              [maxLength]="200"
+                              label="Kérdés"
+                          >
+                          </dx-text-area> 
+                        </div>
+                        <div class="dx-fieldset">
+                              <div class="dx-field">
+                                <div class="dx-field-label">Válasszon aktát:</div>
+                                <div class="dx-field-value">
+                                    <dx-select-box
+                                    #selectBox
+                                    [items]="collectionListDS"
+                                    [inputAttr]="{ 'aria-label': 'Aktakupac' }"
+                                    [(value)]="selectedCollection"
+                                  ></dx-select-box>
+                                </div>
+                              </div>
+                        </div>
+                        <dx-button stylingMode="text"
+                        text="Kérdez"
+                              [height]="50"
+                              type="normal"
+                              (onClick)="askQuestion('FeljelentesMetadata')"
+                        ></dx-button>   
+                        <div class="dx-card details-card"> 
+                              <!-- <div id="answerhtml" [innerHtml]="valueContent">   </div> -->
+                              <span [innerHTML]="valueContent"></span>
+                              <!-- <span>{{ valueContent }}</span> -->
+
+                              <!-- <dx-text-area
+                              [value]="valueContent"
+                              [maxLength]="200"
+                              label="Válasz"
+                          >
+                          </dx-text-area>  -->
+    
+                        </div> 
+                  </div>
+          <div class="right">
+            <iframe src="http://91.107.238.245:6333/dashboard#/collections" 
+            width="100%"                  
+            height="600px"
+            title ="Quadrant"></iframe>
+            
+          </div>
+            </div>
+      </div>
+
+
+

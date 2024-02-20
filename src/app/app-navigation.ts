@@ -5,13 +5,18 @@ export const navigation = [
     icon: 'home'
   },
   {
+    text: 'vallomas',
+    path: '/vallomas',
+    icon: 'card'
+  },
+  {
     text: 'Tasks',
     path: '/tasks',
     icon: 'folder'
   },
   {
-    text: 'vallomas',
-    path: '/vallomas',
-    icon: 'card'
+    text: 'Chat',
+    path: '/chat',
+    icon: 'comment'
   }
 ];

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'; 
 import { HttpClient,  HttpParams  }  from '@angular/common/http';
-import 'devextreme/data/odata/store';
 import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule, DxProgressBarComponent } from 'devextreme-angular';
 import { DxDataGridModule } from 'devextreme-angular';
 import { Service, TabConfig } from './tasks.service';
@@ -15,42 +15,16 @@ import { Service, TabConfig } from './tasks.service';
 export class TasksComponent {
   isMultiline = true;
   valueContent: string ="0";
+  currentTab: string[] | undefined;
   dataSource: any;
   extractedDataJson:any;
   tabs: TabConfig[] | undefined;
-  currentTab: string[] | undefined;
-  priority: any[];
   serverUrl:string="http://91.107.238.245:8080/";
+  gridview=true;
   
 
   constructor(private http: HttpClient,service: Service) {
-    this.dataSource = {
-      store: {
-        version: 2,
-        type: 'odata',
-        key: 'Task_ID',
-        url: 'https://js.devexpress.com/Demos/DevAV/odata/Tasks'
-      },
-      expand: 'ResponsibleEmployee',
-      select: [
-        'Task_ID',
-        'Task_Subject',
-        'Task_Start_Date',
-        'Task_Due_Date',
-        'Task_Status',
-        'Task_Priority',
-        'Task_Completion',
-        'ResponsibleEmployee/Employee_Full_Name'
-      ]
-    };
-    this.priority = [
-      { name: 'High', value: 4 },
-      { name: 'Urgent', value: 3 },
-      { name: 'Normal', value: 2 },
-      { name: 'Low', value: 1 }
-    ];
-
-  
+ 
     this.tabs = service.getTabsData();
     this.currentTab = this.tabs[2].value;
 
@@ -58,7 +32,7 @@ export class TasksComponent {
   
   ngOnInit(): void {
     //template reload
-    this.http.get('./assets/templates/markupsample.txt', { responseType: 'text' })
+    this.http.get('./assets/templates/FeljelentesMetadata.txt', { responseType: 'text' })
     .subscribe({
       next: res => {
         var z= res;
@@ -104,35 +78,52 @@ export class TasksComponent {
     headers.append('Content-Type', 'application/json');
     //let queryparams = new HttpParams().set("filename", 'c:\\tmp\\1.pdf'); //Create new HttpParams  .set("paramName2", paramValue2)
     if (endpoint == "getBtkCategory" || endpoint == "getSummary")
-      {
+      { 
+          this.gridview = false;
           this.http.get(baseurl+endpoint,{ responseType: 'text' })   //, { params:queryparams }
           .subscribe({
             next: res => {
               console.log(res);
               this.extractedDataJson =  res ;
-              this.valueContent = this.valueContent.replace("{{csereldki}}","kukutyin");
             }, 
             error: error => {
               var ez= error;
             },
             complete: () => {     // anonym
-              console.log('Request complete');
+              console.log('Request complete: ' + endpoint);
             }
           });
         }
         else{
+          this.gridview = true;
           this.http.get(baseurl+endpoint)   //, { params:queryparams }
           .subscribe({
             next: res => {
               console.log('Request complete');
               this.extractedDataJson =  res ;
-              this.valueContent = this.valueContent.replace("{{csereldki}}","kukutyin");
+              try {
+                // Parse the JSON array string into an array of objects
+                const jsonArray= this.extractedDataJson;
+                    // Iterate through the array and print key-value pairs
+                jsonArray.forEach((item: { [key: string]: any }) => {
+                  console.log("{{"+item["key"]+"}}", "Value:"+ item["value"]); 
+                  const replacekulcs = "{{"+item["key"]+"}}"
+                  var z= this.valueContent.replaceAll(replacekulcs,item["value"]);
+                   this.valueContent = z;
+                  }
+                );
+
+                
+              } catch (error) {
+                console.error('Error parsing JSON array:', error);
+              }
+              
             },
             error: error => {
               var ez= error;
             },
             complete: () => {     // anonym
-              console.log('Request complete');
+              console.log('Request complete : '+endpoint);
             }
           });
         }
