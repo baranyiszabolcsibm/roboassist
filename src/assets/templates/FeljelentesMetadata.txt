@@ -79,7 +79,7 @@
 <p style="text-align: justify;">
   <span style='font-family: "Times New Roman", serif; font-size: 12pt;'
     >név                                                                    :
-    {{Feljelentő}}</span
+    {{név}}</span
   >
 </p>
 <p style="text-align: justify;">

@@ -28,6 +28,7 @@ export class TasksComponent {
     this.tabs = service.getTabsData();
     this.currentTab = this.tabs[2].value;
 
+
   }
   
   ngOnInit(): void {

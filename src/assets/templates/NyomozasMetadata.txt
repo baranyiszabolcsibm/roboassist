@@ -18,24 +18,22 @@
 </p>
 <p><br /></p>
 <p>
-  Feljelentő                                              : Feljelentő Imre
-  Péter
+  Feljelentő                                              : {{Feljelentő}}
 </p>
-<p>Születési hely, idő                                : Széplak 1953.02.01</p>
-<p>Anyja neve                                            : Anyja Anna</p>
+<p>Születési hely, idő                                : {{Születési hely, idő}}</p>
+<p>Anyja neve                                            : {{Anyja neve}}</p>
 <p>Állampolgárság                                    : magyar</p>
 <p>
-  Lakcíme                                                : 4400 Széplak, Havas
-  utca 12. sz.
+  Lakcíme                                                : {{Lakcíme}}
 </p>
 <p><br /></p>
 <p><br /></p>
-<p>Az esemény elkövetésének időpontja  : 2013.07.11.</p>
+<p>Az esemény elkövetésének időpontja  : {{Az esemény elkövetésének időpontja}}</p>
 <p>
-  Az esemény elkövetésének helye         : 4400 Széplak, Havasi utca 12 c. sz.
+  Az esemény elkövetésének helye         : {{Az esemény elkövetésének helye}}
 </p>
 <p><br /></p>
-<p>A nyomozás indításának időpontja      : 2013.07.04.</p>
+<p>A nyomozás indításának időpontja      : {{A nyomozás indításának időpontja}}</p>
 <p><br /></p>
 <p>
   Eljáró szerv:                                         : Széplak

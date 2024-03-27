@@ -4,19 +4,26 @@ export const navigation = [
     path: '/home',
     icon: 'home'
   },
+  //  MNB
+  // 
+  // {
+  //   text: 'Vallomás',
+  //   path: '/vallomas',
+  //   icon: 'card'
+  // },
+  // {
+  //   text: 'Ügymenet',
+  //   path: '/tasks',
+  //   icon: 'folder'
+  // },
+  // {
+  //   text: 'Elemzés',
+  //   path: '/chat',
+  //   icon: 'comment'
+  // },
   {
-    text: 'vallomas',
-    path: '/vallomas',
-    icon: 'card'
-  },
-  {
-    text: 'Tasks',
-    path: '/tasks',
-    icon: 'folder'
-  },
-  {
-    text: 'Chat',
-    path: '/chat',
+    text: 'Elemzés',
+    path: '/mnbchat',
     icon: 'comment'
   }
 ];

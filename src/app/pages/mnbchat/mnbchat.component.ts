@@ -3,7 +3,7 @@ import { HttpClient,  HttpParams  }  from '@angular/common/http';
 import 'devextreme/data/odata/store';
 import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule, DxProgressBarComponent,DxDropDownBoxModule, DxListModule } from 'devextreme-angular';
 import { DxDataGridModule } from 'devextreme-angular';
-import { Service, TabConfig } from './chat.service';
+import { Service, TabConfig } from './mnbchat.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 
@@ -14,12 +14,12 @@ export class ChatItem {
 
 
 @Component({
-  templateUrl: 'chat.component.html',
-  styleUrls: [ 'chat.component.scss' ],
+  templateUrl: 'mnbchat.component.html',
+  styleUrls: [ 'mnbchat.component.scss' ],
   providers: [Service]
 })
 
-export class ChatComponent {
+export class MNBChatComponent {
   valueContent: string ='&#x1F601 P\u00c9TER\ud83d\udc6e:';
   extractedDataJson:any;
   tabs: TabConfig[] | undefined;

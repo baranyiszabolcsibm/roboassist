@@ -11,6 +11,7 @@ import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule ,DxProgressBarM
 import { VallomasComponent } from './pages/vallomas/vallomas.component';
 import { DocprocessComponent } from './pages/docprocess/docprocess.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { MNBChatComponent } from './pages/mnbchat/mnbchat.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatComponent
+  },
+  {
+    path: 'mnbchat',
+    component: MNBChatComponent
   },
   {
     path: 'docprocess',
@@ -83,7 +88,8 @@ const routes: Routes = [
     TasksComponent,
     VallomasComponent,
     DocprocessComponent,
-    ChatComponent
+    ChatComponent,
+    MNBChatComponent
   ]
 })
 export class AppRoutingModule { }
