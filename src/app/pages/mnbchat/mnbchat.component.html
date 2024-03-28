@@ -13,19 +13,7 @@
                               </li>
                             </ul>
                   </div>
-                  <!--                         <div class="dx-fieldset">
-                              <div class="dx-field">
-                                <div class="dx-field-label">Válasszon aktát:</div>
-                                <div class="dx-field-value">
-                                    <dx-select-box
-                                    #selectBox
-                                    [items]="collectionListDS"
-                                    [inputAttr]="{ 'aria-label': 'Aktakupac' }"
-                                    [(value)]="selectedCollection"
-                                  ></dx-select-box>
-                                </div>
-                              </div>
-                        </div> -->
+                        
                   <dx-button stylingMode="contained" text="Kérdez" [height]="50" type="normal"
                         (onClick)="askQuestion('FeljelentesMetadata')"></dx-button>
 
@@ -42,11 +30,41 @@
                           </dx-text-area>  -->
 
                   </div>
+                  <div class="dx-fieldset" style="width: 300px;">
+                        <div class="dx-field">
+                          <div class="dx-field-label">Találat oldalak:</div>
+                          <div class="dx-field-value">
+                              <dx-select-box
+                              #selectBox
+                              [items]="pages"
+                              [inputAttr]="{ 'aria-label': 'Oldalak' }"
+                              [(value)]="selectedPage"
+                              (onSelectionChanged)=onSelectionChanged($event)   
+                              width="100px"
+                            ></dx-select-box>
+                          </div>
+                        </div>
+                  </div>
                   <!-- <div class="dx-card csapat" >x</div> -->
             </div>
             <div class="right">
                   <div class="content-block ">
-                        <iframe [src]="pdfUrl" width="800px" height="700px" title="PDF document"></iframe>
+                        <ng2-pdfjs-viewer
+                        #pdfViewerOnDemand
+                        (onDocumentLoad)="pdfLoaded()"
+                        [externalWindow]="false"
+                        [openFile]="false"
+                        [viewBookmark]="false"
+                        width="100%"                  
+                        height="800px"
+                        ></ng2-pdfjs-viewer>
+                        <!-- <pdf-viewer
+                        [src]="pdfUrl" 
+                        [page]="selectedPage" 
+                        [show-all]="false" 
+                        (pagechanging)="updateCurrentPage($event )"
+                        ></pdf-viewer> -->
+                        <!-- <iframe id="pdfIframe"  [src]="pdfUrl" width="800px" height="700px" title="PDF document"></iframe> -->
                   </div>
 
                   <!--             <iframe src="http://91.107.238.245:6333/dashboard#/collections" 

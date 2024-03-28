@@ -12,6 +12,9 @@ import { VallomasComponent } from './pages/vallomas/vallomas.component';
 import { DocprocessComponent } from './pages/docprocess/docprocess.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { MNBChatComponent } from './pages/mnbchat/mnbchat.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PdfJsViewerModule } from "ng2-pdfjs-viewer"; // <-- Import PdfJsViewerModule module
+
 
 
 const routes: Routes = [
@@ -78,6 +81,7 @@ const routes: Routes = [
         ,DxButtonModule, DxHtmlEditorModule,
         DxCheckBoxModule,
         DxSelectBoxModule,DxProgressBarModule,DxTextAreaModule
+        ,PdfViewerModule,PdfJsViewerModule
         ],
 
   providers: [AuthGuardService],

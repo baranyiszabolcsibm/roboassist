@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,ViewChild } from '@angular/core';
 import { HttpClient,  HttpParams  }  from '@angular/common/http';
 import 'devextreme/data/odata/store';
 import { DxHtmlEditorModule, DxCheckBoxModule, DxSelectBoxModule, DxProgressBarComponent,DxDropDownBoxModule, DxListModule } from 'devextreme-angular';
@@ -20,42 +20,72 @@ export class ChatItem {
 })
 
 export class MNBChatComponent {
-  valueContent: string ='&#x1F601 P\u00c9TER\ud83d\udc6e:';
+  @ViewChild('pdfViewerOnDemand') pdfViewerOnDemand: any;
+  valueContent: string ='Assistant:';
   extractedDataJson:any;
   tabs: TabConfig[] | undefined;
-  questionText="Kérem a feljelentő nevét és telefonszámát";
+  questionText="Mely EU jogszabályok kapcsolódbak a szavatolótőkéhez?";
   answerText = "";
-  collections = ["1", "2", "3", "pelda-akta"];
-  collectionListDS = this.collections;
-  selectedCollection="pelda-akta"
+
   pdfUrl :SafeResourceUrl;
+  pdfUrlStr :string = 'http://localhost:5000/mnbapi/getPdf/1.pdf';
   chathistory: ChatItem[] = [];
+  pages = [1,2,3,4,5,6,7,8,9,10];
+  selectedPage = 5;
+  summarydoc = "zzz.pdf";
 
 
   constructor(private http: HttpClient,private sanitizer: DomSanitizer) {
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/Példa_akta.pdf#page=5'); 
-    const newChatItem =  {name:"Peter",value:"Kérem a feljelentő nevét és telefonszámát"}
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('c:/temp/13.pdf'); 
+    const newChatItem =  {name:"Assistant",value:"Mely EU jogszabályok kapcsolódnak a szavatolótőkéhez?"}
     this.chathistory.push(newChatItem);
     
   }
   
+  updateCurrentPage(event: any): void {
+    this.selectedPage = 5; // Update the current page
+  }
+  onSelectionChanged(event: any){
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/mnbapi/getPdf/'+this.summarydoc)  
+    this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc;
+   // +"#page="+this.selectedPage);
+    const pdfIframe = document.getElementById('pdfIframe') as HTMLIFrameElement;
+    if (pdfIframe) {
+      pdfIframe.contentWindow?.location.reload();
+    }
+  }
+
+  pdfLoaded() {
+    
+    this.pdfViewerOnDemand.page = this.selectedPage;
+  }
+
+
   public askQuestion(endpoint:string){
     let headers = new Headers();
-    let chaturl = 'http://127.0.0.1:5000/bmapi/aktakerdes';
+    let chaturl = 'http://127.0.0.1:5000/mnbapi/ragsearch';
     headers.append('Content-Type', 'application/json');
-    let queryparams = new HttpParams().set("collection", this.selectedCollection)
-    .append("question", this.questionText);    //Create new HttpParams  .set("paramName2", paramValue2)
+    let queryparams = new HttpParams().set("question", this.questionText);
    
     this.http.get(chaturl,{ params:queryparams, responseType: 'text' })   //, 
     .subscribe({
-      next: res => {
+      next: (res: any) => {
         console.log(res);
-        var regex = /{{(\d+)}}/;
-        var pageno = res.match(regex)
-        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('../../../assets/Példa_akta.pdf#page='+pageno); 
-        this.valueContent =  res;  //.substring(res.indexOf("{{") ,res.length);
+        let jsonObject = JSON.parse(res);
+        this.summarydoc = jsonObject.summarydoc;
+        this.pages = jsonObject.pages;
+        this.selectedPage = this.pages[0];
+        this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc
+        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrlStr);
+        this.pdfViewerOnDemand.pdfSrc =  this.pdfUrlStr;
+        this.pdfViewerOnDemand.refresh();
+        //+"#page="+this.selectedPage
+        this.valueContent =  jsonObject.answer;  //.substring(res.indexOf("{{") ,res.length);
       }, 
       error: error => {
+        /**
+         * Represents the error that occurred.
+         */
         var ez= error;
       },
       complete: () => {     // anonym
