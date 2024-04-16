@@ -24,35 +24,39 @@ export class MNBChatComponent {
   valueContent: string ='Assistant:';
   extractedDataJson:any;
   tabs: TabConfig[] | undefined;
-  questionText="Mely EU jogszabályok kapcsolódbak a szavatolótőkéhez?";
+  questionText="Van-e szabályzás a projektek keretében épített ingatlanberuházást finanszírozó hitelekre intézményi oldalról";
   answerText = "";
 
   pdfUrl :SafeResourceUrl;
   pdfUrlStr :string = 'http://localhost:5000/mnbapi/getPdf/1.pdf';
   chathistory: ChatItem[] = [];
-  pages = [1,2,3,4,5,6,7,8,9,10];
-  selectedPage = 5;
+  pages = [1,2,3];
+  selectedPage = 1;
   summarydoc = "zzz.pdf";
 
 
   constructor(private http: HttpClient,private sanitizer: DomSanitizer) {
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('c:/temp/13.pdf'); 
-    const newChatItem =  {name:"Assistant",value:"Mely EU jogszabályok kapcsolódnak a szavatolótőkéhez?"}
+    const newChatItem =  {name:"Assistant",value:"Milyen ajánlásokat készített az MNB hitelintézeti hitelvállalási kockázatok témakörben?"}
     this.chathistory.push(newChatItem);
     
   }
   
   updateCurrentPage(event: any): void {
-    this.selectedPage = 5; // Update the current page
+    this.selectedPage = 1; // Update the current page
   }
   onSelectionChanged(event: any){
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/mnbapi/getPdf/'+this.summarydoc)  
-    this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc;
-   // +"#page="+this.selectedPage);
-    const pdfIframe = document.getElementById('pdfIframe') as HTMLIFrameElement;
-    if (pdfIframe) {
-      pdfIframe.contentWindow?.location.reload();
-    }
+    this.pdfViewerOnDemand.page = this.selectedPage;
+    this.pdfViewerOnDemand.refresh();
+
+  //   this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('http://localhost:5000/mnbapi/getPdf/'+this.summarydoc)  
+  //   this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc;
+
+  //  // +"#page="+this.selectedPage);
+  //   const pdfIframe = document.getElementById('pdfIframe') as HTMLIFrameElement;
+  //   if (pdfIframe) {
+  //     pdfIframe.contentWindow?.location.reload();
+  //   }
   }
 
   pdfLoaded() {
@@ -63,35 +67,70 @@ export class MNBChatComponent {
 
   public askQuestion(endpoint:string){
     let headers = new Headers();
-    let chaturl = 'http://127.0.0.1:5000/mnbapi/ragsearch';
     headers.append('Content-Type', 'application/json');
     let queryparams = new HttpParams().set("question", this.questionText);
+
+    var chaturl = 'http://127.0.0.1:5000/mnbapi/ragsearch';
+    if (endpoint == 'OKOS'){
+      chaturl = 'http://127.0.0.1:5000/mnbapi/agentcall';
+      /// oksnál csak válasz van
+      this.http.get(chaturl,{ params:queryparams, responseType: 'text' })   //, 
+      .subscribe({
+        next: (res: any) => {
+          console.log(res);
+          let jsonObject = JSON.parse(res);
+              this.valueContent =  jsonObject.answer;  //.substring(res.indexOf("{{") ,res.length);
+              // this.summarydoc = jsonObject.summarydoc;
+              // this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc
+              // this.pdfViewerOnDemand.pdfSrc =  this.pdfUrlStr;
+              // this.pdfViewerOnDemand.refresh();
+        }, 
+        error: error => {
+          /**
+           * Represents the error that occurred.
+           */
+          var ez= error;
+        },
+        complete: () => {     // anonym
+          console.log('Request complete');
+        }
+      });
+    
+    
+    }
+    else {
+      chaturl = 'http://127.0.0.1:5000/mnbapi/ragsearch';
+      this.http.get(chaturl,{ params:queryparams, responseType: 'text' })   //, 
+      .subscribe({
+        next: (res: any) => {
+          console.log(res);
+          let jsonObject = JSON.parse(res);
+          this.summarydoc = jsonObject.summarydoc;
+          this.pages = jsonObject.pages;
+          this.selectedPage = this.pages[0];
+          this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc
+          this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrlStr);
+          this.pdfViewerOnDemand.pdfSrc =  this.pdfUrlStr;
+          this.pdfViewerOnDemand.page = this.selectedPage;
+          this.pdfViewerOnDemand.refresh();
+          //+"#page="+this.selectedPage
+          this.valueContent =  jsonObject.answer;  //.substring(res.indexOf("{{") ,res.length);
+        }, 
+        error: error => {
+          /**
+           * Represents the error that occurred.
+           */
+          var ez= error;
+        },
+        complete: () => {     // anonym
+          console.log('Request complete');
+        }
+      });
+    
+    }
+
    
-    this.http.get(chaturl,{ params:queryparams, responseType: 'text' })   //, 
-    .subscribe({
-      next: (res: any) => {
-        console.log(res);
-        let jsonObject = JSON.parse(res);
-        this.summarydoc = jsonObject.summarydoc;
-        this.pages = jsonObject.pages;
-        this.selectedPage = this.pages[0];
-        this.pdfUrlStr = 'http://localhost:5000/mnbapi/getPdf/'+this.summarydoc
-        this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfUrlStr);
-        this.pdfViewerOnDemand.pdfSrc =  this.pdfUrlStr;
-        this.pdfViewerOnDemand.refresh();
-        //+"#page="+this.selectedPage
-        this.valueContent =  jsonObject.answer;  //.substring(res.indexOf("{{") ,res.length);
-      }, 
-      error: error => {
-        /**
-         * Represents the error that occurred.
-         */
-        var ez= error;
-      },
-      complete: () => {     // anonym
-        console.log('Request complete');
-      }
-    });
+   
         
     
     

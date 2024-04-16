@@ -7,15 +7,18 @@
                         <dx-text-area [(value)]="questionText" [maxLength]="200" label="Kérdés" height="150">
                         </dx-text-area>
 
-                        <ul>
+                        <!-- <ul>
                               <li *ngFor="let chatItem of chathistory">
                                 Név: {{ chatItem.name }}, Szöveg: {{ chatItem.value }}
                               </li>
-                            </ul>
+                            </ul> -->
                   </div>
                         
                   <dx-button stylingMode="contained" text="Kérdez" [height]="50" type="normal"
-                        (onClick)="askQuestion('FeljelentesMetadata')"></dx-button>
+                        (onClick)="askQuestion('RAG')"></dx-button>
+
+                  <dx-button stylingMode="contained" text="Okostól kérdez" [height]="50" type="normal"
+                        (onClick)="askQuestion('OKOS')"></dx-button>
 
                   <div class="dx-card details-card">
                         <!-- <div id="answerhtml" [innerHtml]="valueContent">   </div> -->
@@ -40,23 +43,23 @@
                               [inputAttr]="{ 'aria-label': 'Oldalak' }"
                               [(value)]="selectedPage"
                               (onSelectionChanged)=onSelectionChanged($event)   
-                              width="100px"
+                              width="100%"
                             ></dx-select-box>
                           </div>
                         </div>
                   </div>
                   <!-- <div class="dx-card csapat" >x</div> -->
             </div>
-            <div class="right">
-                  <div class="content-block ">
+            <div class="right" style="height: 800px;">
+          
                         <ng2-pdfjs-viewer
                         #pdfViewerOnDemand
                         (onDocumentLoad)="pdfLoaded()"
                         [externalWindow]="false"
                         [openFile]="false"
                         [viewBookmark]="false"
-                        width="100%"                  
-                        height="800px"
+                        [page]="selectedPage"
+             
                         ></ng2-pdfjs-viewer>
                         <!-- <pdf-viewer
                         [src]="pdfUrl" 
@@ -65,7 +68,7 @@
                         (pagechanging)="updateCurrentPage($event )"
                         ></pdf-viewer> -->
                         <!-- <iframe id="pdfIframe"  [src]="pdfUrl" width="800px" height="700px" title="PDF document"></iframe> -->
-                  </div>
+             
 
                   <!--             <iframe src="http://91.107.238.245:6333/dashboard#/collections" 
             width="100%"                  
